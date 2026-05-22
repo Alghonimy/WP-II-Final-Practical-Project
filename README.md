@@ -50,18 +50,18 @@ The system follows the **MVC (Model-View-Controller)** architectural pattern, us
 
 <br/>
 
-### ➕ Create / Edit Form
-![Create Form](assets/2.png)
+### ➕ Delete Form
+![Delete Form](assets/2.png)
 
 <br/>
 
-### 🔍 Details Page
-![Details Page](assets/3.png)
+### 🔍 Instructors Page
+![Instructors Page](assets/3.png)
 
 <br/>
 
-### 📊 Course Results
-![Course Results](assets/4.png)
+### 📊 Course 
+![Course ](assets/4.png)
 
 </div>
 
