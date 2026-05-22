@@ -1,0 +1,33 @@
+﻿@model UniversityApp.Models.Course
+
+@{
+    ViewData["Title"] = "Delete Course";
+}
+
+<h2 class="text-danger mb-3"><i class="bi bi-exclamation-triangle-fill"></i> Delete Course</h2>
+<h3 class="text-muted mb-4">Are you sure you want to delete this course?</h3>
+<hr />
+
+<div class="card border-danger mb-4 shadow-sm">
+    <div class="card-header bg-danger text-white">
+        <h5 class="card-title mb-0"><i class="bi bi-trash"></i> Review Course Details Before Deletion</h5>
+    </div>
+    <div class="card-body">
+        <h4 class="text-danger fw-bold mb-3">@Model.Name</h4>
+        <p class="card-text"><strong>Department:</strong> @(Model.Department?.Name ?? "No Department")</p>
+        <p class="card-text"><strong>Total Degree:</strong> @Model.Degree</p>
+        <p class="card-text"><strong>Minimum Passing Degree:</strong> @Model.MinDegree</p>
+        <p class="card-text"><strong>Credit Hours:</strong> @Model.Hrs Hours</p>
+
+        <div class="alert alert-danger mb-0 mt-3">
+            <i class="bi bi-alert-diamond-fill"></i> <strong>Warning:</strong> Deleting this course will automatically delete all student grades and results associated with it from the database (Cascade Delete).
+        </div>
+    </div>
+</div>
+
+<form asp-action="Delete" method="post">
+    @Html.AntiForgeryToken()
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger px-4 me-2">Confirm Delete</button>
+    <a asp-action="Index" class="btn btn-secondary px-4">Cancel</a>
+</form>

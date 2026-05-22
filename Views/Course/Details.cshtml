@@ -1,0 +1,96 @@
+﻿@model UniversityApp.Models.Course
+
+@{
+    ViewData["Title"] = "Course Details";
+}
+
+<h2 class="mb-3">Course Details</h2>
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="card shadow-sm mb-4">
+            <div class="card-header bg-primary text-white">
+                <h5 class="card-title mb-0"><i class="bi bi-book"></i> Course Info</h5>
+            </div>
+            <div class="card-body">
+                <h3 class="text-primary fw-bold mb-3">@Model.Name</h3>
+                <p><strong>Total Degree:</strong> @Model.Degree</p>
+                <p><strong>Min Passing Degree:</strong> <span class="text-danger fw-bold">@Model.MinDegree</span></p>
+                <p><strong>Credit Hours:</strong> <span class="badge bg-dark">@Model.Hrs Hrs</span></p>
+                <p><strong>Department:</strong> @(Model.Department?.Name ?? "No Department Assigned")</p>
+            </div>
+            <div class="card-footer bg-white border-top-0">
+                <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning w-100 mb-2">Edit Course</a>
+                <a asp-action="Index" class="btn btn-secondary w-100">Back to List</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-8">
+        <div class="card shadow-sm mb-4">
+            <div class="card-header bg-secondary text-white">
+                <h5 class="card-title mb-0"><i class="bi bi-person-badge"></i> Assigned Instructors</h5>
+            </div>
+            <div class="card-body">
+                @if (Model.Instructors != null && Model.Instructors.Any())
+                {
+                    <ul class="list-group list-group-flush">
+                        @foreach (var inst in Model.Instructors)
+                        {
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                @inst.Name
+                                <span class="text-muted small">@inst.Email</span>
+                            </li>
+                        }
+                    </ul>
+                }
+                else
+                {
+                    <p class="text-muted mb-0">No instructors assigned to this course yet.</p>
+                }
+            </div>
+        </div>
+
+        <div class="card shadow-sm">
+            <div class="card-header bg-info text-white">
+                <h5 class="card-title mb-0"><i class="bi bi-mortarboard"></i> Registered Trainees & Results</h5>
+            </div>
+            <div class="card-body">
+                @if (Model.CrsResults != null && Model.CrsResults.Any())
+                {
+                    <div class="table-responsive">
+                        <table class="table table-sm table-hover mb-0">
+                            <thead>
+                                <tr>
+                                    <th>Trainee Name</th>
+                                    <th>Scored Degree</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var result in Model.CrsResults)
+                                {
+                                    var isPassed = result.Degree >= Model.MinDegree;
+                                    <tr>
+                                        <td>@(result.Trainee?.Name ?? "Unknown")</td>
+                                        <td class="fw-bold">@result.Degree</td>
+                                        <td>
+                                            <span class="badge @(isPassed ? "bg-success" : "bg-danger")">
+                                                @(isPassed ? "Passed" : "Failed")
+                                            </span>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+                else
+                {
+                    <p class="text-muted mb-0">No trainee results recorded for this course.</p>
+                }
+            </div>
+        </div>
+    </div>
+</div>

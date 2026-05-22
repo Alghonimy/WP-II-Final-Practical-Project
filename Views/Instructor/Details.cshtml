@@ -1,0 +1,58 @@
+﻿@model UniversityApp.Models.Instructor
+
+@{
+    ViewData["Title"] = "Instructor Details";
+}
+
+<h2 class="mb-3">Instructor Details</h2>
+<hr />
+
+<div class="card mb-4 shadow-sm">
+    <div class="row g-0">
+        @if (!string.IsNullOrEmpty(Model.ImageUrl))
+        {
+            <div class="col-md-3 text-center p-3 border-end bg-light d-flex align-items-center justify-content-center">
+                <img src="@Model.ImageUrl" class="img-fluid rounded shadow-sm" alt="@Model.Name" style="max-height: 200px; object-fit: cover;" />
+            </div>
+        }
+        <div class="col-md-9">
+            <div class="card-body">
+                <h3 class="card-title text-primary fw-bold mb-3">@Model.Name</h3>
+
+                <div class="row mb-2">
+                    <div class="col-sm-3 fw-bold">Email:</div>
+                    <div class="col-sm-9">@Model.Email</div>
+                </div>
+
+                <div class="row mb-2">
+                    <div class="col-sm-3 fw-bold">Salary:</div>
+                    <div class="col-sm-9 text-success fw-bold">@Model.Salary.ToString("C")</div>
+                </div>
+
+                <div class="row mb-2">
+                    <div class="col-sm-3 fw-bold">Address:</div>
+                    <div class="col-sm-9">@Model.Address</div>
+                </div>
+
+                <div class="row mb-2">
+                    <div class="col-sm-3 fw-bold">Department:</div>
+                    <div class="col-sm-9">
+                        <span class="badge bg-secondary p-2">@(Model.Department?.Name ?? "No Department Assigned")</span>
+                    </div>
+                </div>
+
+                <div class="row mb-2">
+                    <div class="col-sm-3 fw-bold">Assigned Course:</div>
+                    <div class="col-sm-9">
+                        <span class="badge bg-info text-dark p-2">@(Model.Course?.Name ?? "No Course Assigned")</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="form-group">
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning px-4">Edit</a>
+    <a asp-action="Index" class="btn btn-secondary px-4">Back to List</a>
+</div>

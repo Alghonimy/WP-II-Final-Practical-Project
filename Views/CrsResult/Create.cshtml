@@ -1,0 +1,39 @@
+﻿@model UniversityApp.Models.CrsResult
+
+@{
+    ViewData["Title"] = "Record Result";
+}
+
+<h2>Record Course Result</h2>
+<hr />
+
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group mb-3">
+                <label asp-for="TraineeId" class="control-label fw-bold mb-1"></label>
+                <select asp-for="TraineeId" class="form-control" asp-items="ViewBag.Trainees">
+                    <option value="">-- Select Trainee --</option>
+                </select>
+                <span asp-validation-for="TraineeId" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="CrsId" class="control-label fw-bold mb-1"></label>
+                <select asp-for="CrsId" class="form-control" asp-items="ViewBag.Courses">
+                    <option value="">-- Select Course --</option>
+                </select>
+                <span asp-validation-for="CrsId" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="Degree" class="control-label fw-bold mb-1"></label>
+                <input asp-for="Degree" class="form-control" type="number" step="0.01" />
+                <span asp-validation-for="Degree" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-success">Save</button>
+                <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>

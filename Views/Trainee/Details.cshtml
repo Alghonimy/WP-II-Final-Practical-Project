@@ -1,0 +1,43 @@
+﻿@model UniversityApp.Models.Trainee
+
+@{
+    ViewData["Title"] = "Trainee Details";
+}
+
+<h2 class="mb-3">Trainee Details</h2>
+<hr />
+
+<div class="card mb-4 shadow-sm border-0 bg-light">
+    <div class="card-body p-4">
+        <h3 class="card-title text-primary fw-bold mb-4">
+            <i class="bi bi-person-lines-fill"></i> Academic Profile
+        </h3>
+
+        <div class="row mb-3 py-2 border-bottom">
+            <div class="col-sm-3 fw-bold text-secondary">Student Name:</div>
+            <div class="col-sm-9 fs-5 fw-semibold">@Model.Name</div>
+        </div>
+
+        <div class="row mb-3 py-2 border-bottom">
+            <div class="col-sm-3 fw-bold text-secondary">Current Grade / Year:</div>
+            <div class="col-sm-9 fs-5">@Model.Grade</div>
+        </div>
+
+        <div class="row mb-3 py-2 border-bottom">
+            <div class="col-sm-3 fw-bold text-secondary">Address:</div>
+            <div class="col-sm-9">@Model.Address</div>
+        </div>
+
+        <div class="row mb-2 py-2">
+            <div class="col-sm-3 fw-bold text-secondary">Assigned Department:</div>
+            <div class="col-sm-9">
+                <span class="badge bg-success p-2 fs-6">@(Model.Department?.Name ?? "No Department Assigned")</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="form-group">
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning px-4 me-2">Edit Profile</a>
+    <a asp-action="Index" class="btn btn-secondary px-4">Back to List</a>
+</div>
